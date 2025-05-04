@@ -92,8 +92,8 @@
 Библиотеки не полные. Выполнил переустановку podman
 
 ![answer18](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/26.png)  
-![answer19](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/27.png)  
-![answer20](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/28.png)  
+![answer19](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/049cda4a96d0d2610b3d3623bd8511ef8ca733fa/png/27.png)  
+![answer20](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/049cda4a96d0d2610b3d3623bd8511ef8ca733fa/png/28.png)  
 ![answer21](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/29.png)  
 ![answer22](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/30.png)  
 
