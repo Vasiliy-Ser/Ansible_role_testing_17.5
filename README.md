@@ -22,19 +22,19 @@
 
 1. Запустите  `molecule test -s ubuntu_xenial` (или с любым другим сценарием, не имеет значения) внутри корневой директории clickhouse-role, посмотрите на вывод команды. Данная команда может отработать с ошибками или не отработать вовсе, это нормально. Наша цель - посмотреть как другие в реальном мире используют молекулу И из чего может состоять сценарий тестирования.
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/5.png)
+![answer2](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/5.png)
 
 2. Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/6.png)
+![answer3](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/6.png)
 
 3. Добавьте несколько разных дистрибутивов (oraclelinux:8, ubuntu:latest) для инстансов и протестируйте роль, исправьте найденные ошибки, если они есть.
 Найдены ошибки, отсутствия role_name и namespace meta/mail.yml   
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/7.png)
+![answer4](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/7.png)
 
 После исправления критических ошибок найдено не было.  
-[answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/8.png)  
-[answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/9.png)  
+![answer5](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/8.png)  
+![answer6](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/9.png)  
 
 Предупреждения:  
 - Skipping, missing the requirements file. — отсутствует файл requirements.yml, который содержит зависимости для Ansible ролей.  
@@ -53,9 +53,9 @@
 Ошибки:  
 5.1 В контейнере oraclelinux:8 установлен слишком старый Python, не поддерживающий синтаксис from __future__ import annotations, который используется в модулях Ansible.   
 5.2 Установка Vector написана для ОС CentOS, а проверка выполняется в контейнере Ubuntu   
-[answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/13.png)  
-[answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/14.png)  
-[answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/15.png)  
+![answer7](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/13.png)  
+![answer8](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/14.png)  
+![answer9](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/15.png)  
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.  
 
@@ -67,35 +67,35 @@
 2. Запустите `docker run --privileged=True -v <path_to_repo>:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash`, где path_to_repo — путь до корня репозитория с vector-role на вашей файловой системе.  
 3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.  
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/16.png)
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/19.png)
+![answer10](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/16.png)
+![answer11](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/19.png)
 
  Появляется проблему с  отсутствием пакета six, который необходим для работы Ansible,  добавим в [tox-requirements.txt](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/playbook/roles/Vector/tox-requirements.txt). Также обновим конфигурацию [tox.ini](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/playbook/roles/Vector/tox.ini).  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/20.png)
+![answer12](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/20.png)
 
 При проверки обнаружено отсутствие драйвера molecule-docker  
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/21.png)  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/22.png)  
+![answer13](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/21.png)  
+![answer14](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/22.png)  
 
 Но ошибки все равно сохраняются  
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/23.png)
+![answer15](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/23.png)
 
 5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
 
 Буду использовать драйвер podman
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/24.png)  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/25.png)
+![answer16](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/24.png)  
+![answer17](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/25.png)
 
 Библиотеки не полные. Выполнил переустановку podman
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/26.png)  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/27.png)  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/28.png)  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/29.png)  
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/30.png)  
+![answer18](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/26.png)  
+![answer19](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/27.png)  
+![answer20](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/28.png)  
+![answer21](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/29.png)  
+![answer22](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/30.png)  
 
 6. Пропишите правильную команду в `tox.ini`, чтобы запускался облегчённый сценарий.
 
@@ -103,7 +103,7 @@
 
 8. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
 
-![answer1](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/31.png)  
+![answer23](https://github.com/Vasiliy-Ser/Ansible_role_testing_17.5/blob/982dd09546a1bc1b67ff14fe88918377ae64698d/png/31.png)  
 
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
