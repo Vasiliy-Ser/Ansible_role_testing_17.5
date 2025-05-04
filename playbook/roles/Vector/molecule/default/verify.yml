@@ -1,0 +1,23 @@
+---
+- name: Verify Vector installation
+  hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: Check if Vector binary is available
+      command: which vector
+      register: vector_path
+      failed_when: vector_path.rc != 0
+      changed_when: false
+
+    - name: Validate Vector config
+      command: vector validate --no-environment
+      register: validate_result
+      failed_when: validate_result.rc != 0
+      changed_when: false
+
+    - name: Ensure Vector service is running
+      shell: systemctl is-active vector
+      register: vector_status
+      failed_when: vector_status.stdout.strip() != "active"
+      changed_when: false

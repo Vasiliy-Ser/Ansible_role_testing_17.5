@@ -1,0 +1,12 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: instance_oracle
+    image: oraclelinux:8
+    pre_build_image: true
+    privileged: true
+  - name: instance_ubuntu
+    image: ubuntu:latest
+    pre_build_image: true
+    privileged: true

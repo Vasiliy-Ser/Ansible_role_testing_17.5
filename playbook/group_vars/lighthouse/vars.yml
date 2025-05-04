@@ -1,0 +1,7 @@
+lighthouse_vcs:  "https://github.com/GoogleChrome/lighthouse/archive/refs/tags/v12.5.1.tar.gz"
+lighthouse_location_dir: "/tmp/lighthouse-v12.5.1.tar.gz"
+lighthouse_install_dir: "/opt/lighthouse-12.5.1"
+lighthouse_static_url: /opt/lighthouse
+nginx_server_name: "lighthouse.local"
+lighthouse_folder_name: lighthouse
+lighthouse_version: "12.5.1"

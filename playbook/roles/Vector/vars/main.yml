@@ -1,0 +1,6 @@
+---
+vector_config_dir: "/etc/vector"
+vector_exec: /usr/bin/vector
+vector_config: /etc/vector/vector.toml
+vector_user: master
+vector_group: master

@@ -1,0 +1,44 @@
+---
+# Determine the architecture for installing the package
+- name: Install vector prepare architecture name when x64
+  ansible.builtin.set_fact:
+    architecture_name: amd64
+  when: ansible_architecture == 'x86_64'
+
+- name: Install vector prepare architecture name when else
+  ansible.builtin.set_fact:
+    architecture_name: undefined
+  when: ansible_architecture != 'x86_64'
+
+# Installing Vector for x86_64 (RPM) architecture
+- name: Install vector yum install for x86_64
+  ansible.builtin.yum:
+    name: "https://packages.timber.io/vector/{{ vector_version }}/vector-x86_64.rpm"
+    state: present
+    disable_gpg_check: true
+  when: architecture_name == 'amd64'
+  notify: restart vector service
+
+# Configuring a systemd unit for Vector
+- name: Configure service template systemd unit
+  ansible.builtin.template:
+    src: vector.service.j2
+    dest: /etc/systemd/system/vector.service
+    mode: '0644'
+  notify: restart vector service
+
+# Let's make sure the configuration directory exists.
+- name: Configure Vector ensure directory exists
+  ansible.builtin.file:
+    path: "{{ vector_config_dir }}"
+    state: directory
+    mode: '0755'
+  notify: restart vector service
+
+# We configure the Vector configuration itself via a template
+- name: Configure vector template config
+  ansible.builtin.template:
+    src: vector_config.j2
+    dest: "{{ vector_config_dir }}/vector.toml"
+    mode: '0644'
+  notify: restart vector service

@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Padeev Vasiliy
+  description: This role installs git, node.js, npm, epel-release, nginx  on the lighthouse vm
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: CentOS
+      versions:
+        - 8
+        - 9
+  galaxy_tags: []
+dependencies: []

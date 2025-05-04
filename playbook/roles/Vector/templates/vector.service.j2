@@ -1,0 +1,16 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=Vector Agent
+Documentation=https://vector.dev/docs
+After=network.target
+
+[Service]
+ExecStart={{ vector_exec }} --config {{ vector_config }}
+Restart=always
+User={{ vector_user }}
+Group={{ vector_group }}
+LimitNOFILE=65536
+EnvironmentFile=-/etc/default/vector
+
+[Install]
+WantedBy=multi-user.target

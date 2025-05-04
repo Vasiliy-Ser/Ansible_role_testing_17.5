@@ -1,0 +1,10 @@
+# group_vars/all.yml
+clickhouse_host_ip: "89.169.131.218"
+vector_host_ip: "89.169.159.151"
+lighthouse_host_ip: "158.160.47.212"
+ansible_default_ipv4.address: "0.0.0.0"
+
+nginx_port: 80
+nginx_user: www-data
+#lighthouse_static_url: /opt/lighthouse
+#vector_version: "0.25.0"

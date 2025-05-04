@@ -1,0 +1,15 @@
+---
+- name: Установка Python без sudo
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Установка Python 3 без sudo
+      raw: |
+        if command -v apt > /dev/null; then
+          apt update && apt install -y python3
+        elif command -v dnf > /dev/null; then
+          dnf install -y python3
+        elif command -v yum > /dev/null; then
+          yum install -y python3
+        fi
+      changed_when: false

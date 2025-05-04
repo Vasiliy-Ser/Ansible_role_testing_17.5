@@ -1,0 +1,17 @@
+<clickhouse>
+    <listen_host>{{ ansible_default_ipv4.address }}</listen_host>
+    <listen_port>9000</listen_port>
+    <http_port>8123</http_port>
+    
+    <!-- Настроим IP-адрес для взаимодействия с Vector -->
+    <remote_servers>
+        <your_cluster>
+            <replica>
+                <host>{{ vector_host_ip }}</host>
+                <port>9000</port>
+            </replica>
+        </your_cluster>
+    </remote_servers>
+
+    <log_level>trace</log_level>
+</clickhouse>

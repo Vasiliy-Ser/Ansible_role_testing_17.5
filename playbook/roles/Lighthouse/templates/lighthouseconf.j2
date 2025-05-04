@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+server {
+    listen 80;
+    server_name {{ nginx_server_name }};
+    root {{ lighthouse_install_dir }}/{{ lighthouse_folder_name }};
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Простой проксинг для Lighthouse API, если нужно
+    location /api/ {
+        proxy_pass http://localhost:9222;  # Здесь предполагается, что Lighthouse API работает на порту 9222
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Логи
+    access_log /var/log/nginx/lighthouse.access.log;
+    error_log /var/log/nginx/lighthouse.error.log;
+
+    # Настройки для защиты от DOS-атак
+    client_max_body_size 10M;
+}

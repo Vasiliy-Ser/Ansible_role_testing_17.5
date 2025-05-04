@@ -1,0 +1,41 @@
+---
+- name: Lighthouse | install dependencies
+  become: true
+  ansible.builtin.yum:
+    name: git
+    state: present
+
+- name: Install node.js (if not already installed)
+  become: true
+  ansible.builtin.yum:
+    name: nodejs
+    state: present
+
+- name: Install npm globally (if needed)
+  become: true
+  ansible.builtin.yum:
+    name: npm
+    state: present
+
+- name: Nginx | install epel-release
+  become: true
+  ansible.builtin.yum:
+    name:
+      - epel-release
+    state: present
+
+- name: Nginx | install nginx
+  become: true
+  ansible.builtin.yum:
+    name: nginx
+    state: present
+  notify: start-nginx
+  
+- name: Nginx | create general config
+  become: true
+  ansible.builtin.template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    mode: '0644'
+  notify: reload-nginx
+
